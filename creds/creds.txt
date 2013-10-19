@@ -1,0 +1,8 @@
+AWS
+UserId: admin@drizzzleapp.com
+Pwd:  drizzzlerocks
+
+
+Namecheap
+userid: sagarthearagorn
+Pwd:   drizzzlerocks
