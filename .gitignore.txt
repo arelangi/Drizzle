@@ -1,2 +1,3 @@
 .DS_Store
 code/misc/.metadata/
+*.mp4
