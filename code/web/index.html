@@ -8,7 +8,7 @@
     <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-    #video_background{position:absolute;bottom:0;right:0;min-width:100%;min-height:100%;width:auto;height:auto;z-index:-1000;overflow:hidden}.container-narrow{margin:0 auto;max-width:700px}.container-narrow>hr{margin:30px 0}.jumbotron{margin:60px 0;text-align:center}.jumbotron h1{font-size:72px;line-height:1}.jumbotron .btn{font-size:21px;padding:14px 24px}.marketing{margin:60px 0}.marketing p+h4{margin-top:28px}#mydiv{position:fixed;top:50%;left:50%;width:30em;height:18em;margin-top:-9em;margin-left:-15em;color:#7257cf}#email{height:2.5em;width:20.8em}
+    #video_background{position:absolute;bottom:0;right:0;min-width:100%;min-height:100%;width:auto;height:auto;z-index:-1000;overflow:hidden}.container-narrow{margin:0 auto;max-width:700px}.container-narrow>hr{margin:30px 0}.jumbotron{margin:60px 0;text-align:center}.jumbotron h1{font-size:72px;line-height:1}.jumbotron .btn{font-size:21px;padding:14px 24px}.marketing{margin:60px 0}.marketing p+h4{margin-top:28px}#mydiv{position:fixed;top:50%;left:50%;width:30em;height:18em;margin-top:-9em;margin-left:-15em;color:#7257cf}#email{height:2.5em;width:20.8em}.btn{min-width: 11.8em;}
     </style>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">    
   </head>
@@ -19,13 +19,13 @@
         <h1>Drizzzle</h1>
         <p class="lead">Launching soon</p>
         <input id="email" type="text" placeholder="email">
-        <a class="btn btn-success" href="#">Sign up for the beta version</a>
+        <a class="btn btn-success">Sign up for the beta version</a>
       </div>
     </div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(".btn").click(function(){null==$("#email").val()||""==$("#email").val()?alert("invalid entry"):$.ajax({url:"beta.php?email="+$("#email").val(),success:function(){console.log("success")}})});
+$(".btn").click(function(){null==$("#email").val()||""==$("#email").val()?alert("invalid entry"):$.ajax({url:"beta.php?email="+$("#email").val(),success:function(){$(".btn").html("Thanks for signing up!");$('.btn').prop('disabled', true);}})});
 </script>
   </body>
 </html>
