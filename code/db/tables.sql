@@ -1,0 +1,3 @@
+create table user(username varchar(30), email varchar(140), pwd varchar(160), Primary Key(username));
+create table images(id bigint, time timestamp, imagepath varchar(500), thumbnailpath varchar(500), username varchar(30), lat decimal(10,8), lng decimal (11,8), title varchar(240), primetag varchar(12), tags varchar(150), hascontent tinyint, likecount int, content mediumtext, islive tinyint, Primary Key(id));
+create table follow(followerid int , userid int);
