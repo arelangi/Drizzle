@@ -1,33 +1,47 @@
 <?php
 
-try
-{
-        /*** the image file ***/
-        $image = 'img/test.JPG';
+        header('Content-Type: application/json');
 
-        /*** a new imagick object ***/
-        $im = new Imagick();
+        $b64image = $_POST["image"]/*base64_encode(file_get_contents('img/test.JPG'))*/;
+        $fileName = generateRandomString(16);
+        $originalPath = 'img/';
+        $thumbPath = 'thumb/thumb';
 
-        /*** ping the image ***/
-        $im->pingImage($image);
+        echo saveImage($b64image,$fileName,$originalPath,$thumbPath);
 
-        /*** read the image into the object ***/
-        $im->readImage( $image );
+        function saveImage($codedImage, $fileName, $originalPath, $thumbPath){
 
-        /*** thumbnail the image ***/
-        $im->thumbnailImage( 100, null );
+                try{
+                        $img = new Imagick();
+                        $decoded = base64_decode($codedImage);
+                        $img->readimageblob($decoded);
+                        $img->writeImage($originalPath.$fileName.'.jpg');
+                        $img->thumbnailImage(154,null);
+                        $img->writeImage($thumbPath.$fileName.'.png');
+                        $im->destroy();    
 
-        /*** Write the thumbnail to disk ***/
-        $im->writeImage( 'img/spork_thumbnail.jpg' );
+                        return json_encode(array("status"=>"success"));
+                }catch(Exception $e){
+                        //echo $e->getMessage();
+                    return json_encode(array("status"=>"failed"));
+                }
 
-        /*** Free resources associated with the Imagick object ***/
-        $im->destroy();
 
-        echo 'Thumbnail Created';
-}
-catch(Exception $e)
-{
-        echo $e->getMessage();
-}
+                
+        }
+
+        function generateRandomString($length = 40) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, strlen($characters) - 1)];
+            }
+            return $randomString;
+        }
+
+
+
+        
+
 
 ?>
