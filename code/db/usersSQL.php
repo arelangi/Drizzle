@@ -1314,7 +1314,7 @@
 
 	foreach ($users as $key => $value) {
 		$user = $value["user"];
-		$query = "insert into USER(EMAIL ,	PWD ,USERNAME) values ('".$user["email"]."' , '".(substr($user["name"]["first"], 0,2).$user["name"]["last"])."' , '".(substr($user["name"]["first"], 0,2).$user["name"]["last"])."');";
+		$query = "insert into users(username,pwd,email) values ('".$user["email"]."' , '".(substr($user["name"]["first"], 0,2).$user["name"]["last"])."' , '".(substr($user["name"]["first"], 0,2).$user["name"]["last"])."');";
 		
 		$res = mysql_query($query) or die(mysql_error());
 
