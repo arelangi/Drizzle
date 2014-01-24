@@ -43,6 +43,7 @@
 	    $image["primetag"] = $row["primetag"];
 	    $image["tags"] = $row["tags"];
 	    $image["hascontent"] = $row["hascontent"];
+	    $image["content"] = $row["content"];
 	    $image["likecount"] = $row["likecount"];
 	    $image["islive"] = $row["islive"];
 
