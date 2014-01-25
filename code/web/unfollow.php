@@ -4,7 +4,7 @@
     mysql_select_db('drizzle')  or die(mysql_error());
 
 
-    $query = "delete from followers where followerid = '".$_GET['follower']."' and userid= '".$_GET['user']."';";
+    $query = "delete from followers where followerid = '".mysql_real_escape_string($_GET['follower'])."' and userid= '".mysql_real_escape_string($_GET['user'])."';";
     $res = mysql_query($query);
 	
 	if(mysql_affected_rows()==1){

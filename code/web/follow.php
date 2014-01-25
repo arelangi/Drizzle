@@ -4,7 +4,7 @@
     mysql_select_db('drizzle')  or die(mysql_error());
 
 
-    $query = "insert into followers values('".$_GET['follower']."' , '".$_GET['user']."');";
+    $query = "insert into followers values('".mysql_real_escape_string($_GET['follower'])."' , '".mysql_real_escape_string($_GET['user'])."');";
     $res = mysql_query($query);
 	
 	if($res==1){
