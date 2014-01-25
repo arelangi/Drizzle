@@ -6,14 +6,14 @@
         mysql_select_db('drizzle')  or die(mysql_error());
 
 
-        $b64image = $_POST["image"]; /*base64_encode(file_get_contents('pics/hohoho (1).jpg'));*/
+        $b64image = $_POST["image"]; /*base64_encode(file_POST_contents('pics/hohoho (1).jpg'));*/
         $fileName = generateRandomString(16);
         $originalPath = 'img/';
         $thumbPath = 'thumb/thumb';
-        $username = mysql_real_escape_string($_GET['username']);
-        $lat = mysql_real_escape_string($_GET['lat']);
-        $lng = mysql_real_escape_string($_GET['lng']);
-        $primetag = mysql_real_escape_string($_GET['primetag']);
+        $username = mysql_real_escape_string($_POST['username']);
+        $lat = mysql_real_escape_string($_POST['lat']);
+        $lng = mysql_real_escape_string($_POST['lng']);
+        $primetag = mysql_real_escape_string($_POST['primetag']);
 
         echo saveImage($b64image,$fileName,$originalPath,$thumbPath,$username,$lat,$lng,$primetag);
         
@@ -41,12 +41,14 @@
                     if($res == 1){
                         return json_encode(array("status"=>"success"));
                     }else{
-                        return json_encode(array("status"=>"failed"));
+                        header('HTTP/1.1 400 Bad Request', true, 400);
+                        echo json_encode(array("status"=>"failed"));
                     }
 
                     
             }catch(Exception $e){
-                return json_encode(array("status"=>"failed"));
+                header('HTTP/1.1 400 Bad Request', true, 400);
+                echo json_encode(array("status"=>"failed"));
             }
 
 

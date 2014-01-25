@@ -12,7 +12,7 @@
 
    
 
-	$query = "select SQL_CALC_FOUND_ROWS id,imagepath, thumbnailpath,lat,lng, title, primetag, tags, hascontent,likecount,islive from images where username='".mysql_real_escape_string($_GET['user'])."' order by time desc limit ".($length*$page).",".$length.";";
+	$query = "select SQL_CALC_FOUND_ROWS id,imagepath, thumbnailpath,lat,lng, title, primetag, tags, hascontent,likecount,islive from images where username='".mysql_real_escape_string($_GET['username'])."' order by time desc limit ".($length*$page).",".$length.";";
 	$q = "select FOUND_ROWS()";
 
 	$result = mysql_query($query);

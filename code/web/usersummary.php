@@ -6,7 +6,7 @@
 
    
 
-    $query =  "select users.username as username, sum(likecount) as likes,count(*) as drizzles,sum(islive) as journals from users,images where images.username = users.username and users.username='".mysql_real_escape_string($_GET['user'])."';";
+    $query =  "select users.username as username, sum(likecount) as likes,count(*) as drizzles,sum(islive) as journals from users,images where images.username = users.username and users.username='".mysql_real_escape_string($_GET['username'])."';";
     
     $res = mysql_query($query);
     $returnArray = array();
