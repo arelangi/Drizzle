@@ -1,8 +1,7 @@
 <?php
 
 	mysql_connect('127.0.0.1','developer','developer')or die(mysql_error());
-
-    mysql_select_db('drizzle')
+	mysql_select_db('drizzle')
          or die(mysql_error());
 
 
@@ -43,7 +42,6 @@
 	    $image["primetag"] = $row["primetag"];
 	    $image["tags"] = $row["tags"];
 	    $image["hascontent"] = $row["hascontent"];
-	    $image["content"] = $row["content"];
 	    $image["likecount"] = $row["likecount"];
 	    $image["islive"] = $row["islive"];
 
