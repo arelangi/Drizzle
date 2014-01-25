@@ -17,5 +17,5 @@
 	}
 
 	echo json_encode($return);
-
+	mysql_close();
 ?>

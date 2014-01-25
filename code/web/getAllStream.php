@@ -65,7 +65,7 @@
 		$returnArray["prev_page"] = ($page-1 <= 1)?null:$page-1;
 		$returnArray["next_page"] = ($page+1 >= $total_pages)?null:$page+1;
 		$returnArray["data"] = $images;
-		
+
 		return $returnArray;
 	}
 
@@ -101,6 +101,8 @@
 
 		    $images[] = $image;
 		}
+
+		
 
 		$total_pages = floor($r[0]/$length);
 

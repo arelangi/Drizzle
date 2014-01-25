@@ -39,11 +39,18 @@
 	    $images[] = $image;
 	}
 
+	
+	$total_pages = floor($r[0]/$length);
+
 	$returnArray = array();
 	$returnArray["count"] = $r[0];
+	$returnArray["total_pages"] = $total_pages;
 	$returnArray["current_page"] = $page;
-	$returnArray["next_page"] = $page+1;
+	$returnArray["prev_page"] = ($page-1 <= 1)?null:$page-1;
+	$returnArray["next_page"] = ($page+1 >= $total_pages)?null:$page+1;
 	$returnArray["data"] = $images;
+
+	mysql_close();
 
 	echo json_encode($returnArray);
 

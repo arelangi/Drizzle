@@ -48,6 +48,7 @@
 	$returnArray["next_page"] = ($page+1 >= $total_pages)?null:$page+1;
 	$returnArray["data"] = $images;
 
+	mysql_close();
 	echo json_encode($returnArray);
 
 ?>

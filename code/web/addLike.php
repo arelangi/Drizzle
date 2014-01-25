@@ -13,4 +13,6 @@
     	echo json_encode(array("status"=>"failed"));
     }
 
+    mysql_close();
+
 ?>

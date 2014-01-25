@@ -30,5 +30,5 @@
             return $randomString;
 	}
 
-
+	mysql_close();
 ?>

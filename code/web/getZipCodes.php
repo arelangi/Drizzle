@@ -32,4 +32,6 @@
     	echo $city . '     '.$distance.'     '.$zip.'<br />';
 	}
 
+	mysql_close();
+
 ?>
