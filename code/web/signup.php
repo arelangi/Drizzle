@@ -5,7 +5,7 @@
          or die(mysql_error());
 
 
-        $query = "insert into users(username,email,pwd) values('".mysql_real_escape_string($_GET['username'])."','".mysql_real_escape_string($_GET['email'])."','".mysql_real_escape_string($_GET['pwd'])."');";
+        $query = "insert into users(username,email,pwd) values('".mysql_real_escape_string($_POST['username'])."','".mysql_real_escape_string($_POST['email'])."','".mysql_real_escape_string($_POST['pwd'])."');";
 
         $res = mysql_query($query);
 

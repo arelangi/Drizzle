@@ -6,11 +6,16 @@
     $query = "update images set likecount=likecount+1 where id=".mysql_real_escape_string($_GET["id"]);
     $res = mysql_query($query);
 
-    if($res==1){
-    	echo json_encode(array("status"=>"success"));
+    if(isset($_GET["id"])){
+        if($res==1){
+        echo json_encode(array("status"=>"success"));
+        }else{
+            header('HTTP/1.1 400 Bad Request', true, 400);
+            echo json_encode(array("status"=>"failed"));
+        }
     }else{
-    	header('HTTP/1.1 400 Bad Request', true, 400);
-    	echo json_encode(array("status"=>"failed"));
+        header('HTTP/1.1 400 Bad Request', true, 400);
+        echo json_encode(array("status"=>"failed"));
     }
 
     mysql_close();

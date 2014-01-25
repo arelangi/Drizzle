@@ -8,22 +8,26 @@
 
 	$lat = mysql_real_escape_string($_GET['lat']);
 	$lng = mysql_real_escape_string($_GET['lng']);
+	$user = mysql_real_escape_string($_GET['username']);
 	$distance = isset($_GET['distance'])?mysql_real_escape_string($_GET['distance']):50;
 	$length = isset($_GET['length'])?mysql_real_escape_string($_GET['length']):30;
 	$page = isset($_GET['page'])?mysql_real_escape_string($_GET['page']):0;
-	$user = mysql_real_escape_string($_GET['user']);
+	
 
 
+	if(isset($_GET["lat"]) && isset($_GET["lng"]) && isset($_GET["username"])){
+		$resultArray = array();
+		$resultArray["around"] = getAroundStream($lat,$lng,$distance,$length,$page,$user);
+		$resultArray["followers"] = getFollowerStream($length,$page,$user);
+		echo json_encode($resultArray);
+		mysql_close();
+	}else{
+		header('HTTP/1.1 400 Bad Request', true, 400);
+        echo json_encode(array("status"=>"failed"));
+	}
 
-	$resultArray = array();
-	$resultArray["around"] = getAroundStream($lat,$lng,$distance,$length,$page,$user);
-	$resultArray["followers"] = getFollowerStream($length,$page,$user);
+	
 
-	echo json_encode($resultArray);
-
-
-
-	mysql_close();
 
 
 	function getAroundStream($lat,$lng,$distance,$length,$page,$user){
@@ -86,7 +90,7 @@
 		$length = isset($_GET['length'])?mysql_real_escape_string($_GET['length']):30;
 		$page = isset($_GET['page'])?mysql_real_escape_string($_GET['page']):0;	   
 
-		$query = "select SQL_CALC_FOUND_ROWS id,imagepath, thumbnailpath,lat,lng, title, primetag, tags, hascontent,likecount,islive from images where username in (select followerid from followers where userid='".mysql_real_escape_string($_GET['user'])."') order by time desc limit ".($length*$page).",".$length.";";
+		$query = "select SQL_CALC_FOUND_ROWS id,imagepath, thumbnailpath,lat,lng, title, primetag, tags, hascontent,likecount,islive from images where username in (select followerid from followers where userid='".mysql_real_escape_string($_GET['username'])."') order by time desc limit ".($length*$page).",".$length.";";
 		$q = "select FOUND_ROWS()";
 
 		$result = mysql_query($query);
