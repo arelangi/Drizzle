@@ -16,6 +16,8 @@
         $primetag = mysql_real_escape_string($_GET['primetag']);
 
         echo saveImage($b64image,$fileName,$originalPath,$thumbPath,$username,$lat,$lng,$primetag);
+        
+        mysql_close();
 
         function saveImage($codedImage, $fileName, $originalPath, $thumbPath,$username,$lat,$lng,$primetag){
 

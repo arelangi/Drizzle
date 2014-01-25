@@ -10,5 +10,5 @@
 	}else{
 		echo json_encode(array("available"=>"yes"));
 	}
-	
+	mysql_close();
 ?>
